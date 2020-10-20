@@ -1,15 +1,20 @@
-import React from 'react'
-import './App.css';
-import { Counter } from './features/counter/Counter';
-
+import React from "react";
+import "./App.css";
+import { Counter } from "./features/Counter";
+import Sidebar from "./Sidebar";
+import Chat from "./Chat";
 
 
 const App = () => {
   return (
     <div className="app">
-        discord clone
+  
+      {/* sidebar */}
+      <Sidebar />
+      {/* chat */}
+      <Chat />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
