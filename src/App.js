@@ -17,6 +17,8 @@ const App = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
+      console.log("test 1");
+      console.log(authUser);
       if (authUser) {
         // login
         dispatch(
@@ -36,10 +38,10 @@ const App = () => {
   return (
     <div className="app">
       {user ? (
-        <div>
+        <>
           <Sidebar />
           <Chat />
-        </div>
+        </>
       ) : (
         <Login />
       )}
