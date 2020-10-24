@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Chat.css";
 import ChatHeader from "./ChatHeader";
 
@@ -8,11 +8,20 @@ import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 import GifIcon from "@material-ui/icons/Gif";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import Message from "./Message";
+import { selectUser } from "./features/userSlice";
+import { selectChannelID, selectChannelName } from "./features/appSlice";
+import { useSelector } from "react-redux";
 
 const Chat = () => {
+  const user = useSelector(selectUser);
+  const channelId = useSelector(selectChannelID);
+  const channelName = useSelector(selectChannelName);
+
+  const [input, setInput] = useState("");
+
   return (
     <div className="chat">
-      <ChatHeader />
+      <ChatHeader channelName={channelName} />
 
       <div className="chat__messages">
         <Message />
@@ -23,9 +32,16 @@ const Chat = () => {
       <div className="chat__input">
         <AddCircleIcon />
         <form>
-          <input placeholder={`messages`} />
-          <button className="chat__inputButton" type="submit">
-            {" "}
+          <input
+            value={input}
+            disabled={!channelId}
+            placeholder={`messages ${channelName}`}
+          />
+          <button
+            disabled={!channelId}
+            className="chat__inputButton"
+            type="submit"
+          >
             send message
           </button>
         </form>
